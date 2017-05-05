@@ -1,0 +1,15 @@
+README
+
+Agregar en "coffeebo.local" un nuevo dominio
+
+	Name: coffeebo.xsp
+	Agent: 15c
+
+Agregar en httpd-vhosts.conf
+	<VirtualHost *:80>
+	    ServerName coffeebo.xsp
+		DocumentRoot <direccion-local>/JADEtools/coffedbo.xsp/www
+	</VirtualHost>
+
+Agregar en host
+	127.0.0.1 coffeebo.xsp
