@@ -60,7 +60,7 @@ define('TIME_YMDHIS', date('Y-m-d H:i:s', time()));
 
 //API
 
-define('APIURL', 'http://api.internal:1000/index.php?wsdl');
+define('APIURL', 'http://xsp.bo.svc:9999/svcBO.asmx?wsdl');
 
 //로그인
 define('API_LOGIN', 'SvcValidateCustomer');

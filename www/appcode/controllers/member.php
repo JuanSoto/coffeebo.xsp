@@ -109,24 +109,28 @@ class Member extends CI_Controller {
 		$ret_url	= secure($this->input->post('ret_url'));          #이전주소
 		$customerID		= secure($this->input->post('customerID'));          #아이디
 
-		$login_result = $this->Xbets_model->loginProc();
+		$login_result_json = $this->Xbets_model->loginProc();
 
-		if($login_result["status"] == "OK"){
+		$login_result = json_decode($login_result_json["loginVerifyResult"]);
+
+		// error_log(json_encode($login_result->{'status'}),3,"C:/temp/ErrorMessage.log"); 
+
+		if($login_result->{'status'} == "OK"){
 
 				$domain = get_HostName(base_url());
-				$forwardDomainURL = $login_result["forwardDomainURL"];
+				// $forwardDomainURL = $login_result["forwardDomainURL"];
 
 				//회원 등급의 포워드도메인이 있을경우
-				if($forwardDomainURL != "" && $domain != $forwardDomainURL){
-					messageMovePop("your domain forwad^^", "http://".$forwardDomainURL);
-				}
+				// if($forwardDomainURL != "" && $domain != $forwardDomainURL){
+				// 	messageMovePop("your domain forwad^^", "http://".$forwardDomainURL);
+				// }
 
 				$this->session->set_userdata('MEM_LID', $customerID); //세션
-				$this->session->set_userdata('customerID', $login_result["customerID"]); //세션
-				$this->session->set_userdata('loginSessionID', $login_result["loginSessionID"]); //세션
-				$this->session->set_userdata('frdFlag', $login_result["frdFlag"]); //세션
-				$this->session->set_userdata('levelName', $login_result["levelName"]); //세션
-				$this->session->set_userdata('GameCompanyVisible', $login_result["GameCompanyVisible"]); //세션
+				$this->session->set_userdata('customerID', $login_result->{'userName'}); //세션
+				$this->session->set_userdata('loginSessionID', $login_result->{'token'}); //세션
+				// o$this->session->set_userdata('frdFlag', $login_result["frdFlag"]); //세션
+				// $this->session->set_userdata('levelName', $login_result["levelName"]); //세션
+				// $this->session->set_userdata('GameCmpanyVisible', $login_result["GameCompanyVisible"]); //세션
 
 				if($ret_url == ""){
 					$ret_url = "/";

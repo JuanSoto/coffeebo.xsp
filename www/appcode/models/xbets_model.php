@@ -93,14 +93,19 @@ class Xbets_model extends CI_Model
 		$customerID		= secure($this->input->post('customerID'));
 		$password		= secure($this->input->post('userpw'));
 
-		$method = "Login";
+		$method = "loginVerify";
+
+		// $param = array(
+		// 	'domain' => get_HostName(base_url()),
+		// 	'isMobile' => isMobile()?"Y":"N", //$isMobile,
+		// 	"login"=>$customerID,
+		// 	"password"=>$password,
+  //           "ipaddress"=>getIPaddress()
+		// );
 
 		$param = array(
-			'domain' => get_HostName(base_url()),
-			'isMobile' => isMobile()?"Y":"N", //$isMobile,
-			"login"=>$customerID,
-			"password"=>$password,
-            "ipaddress"=>getIPaddress()
+			"userName"=>$customerID,
+			"userPassword"=>$password
 		);
 
 		$result = sendSoapData_new($method, $param);

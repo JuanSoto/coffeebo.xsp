@@ -15,7 +15,9 @@ class Main extends CI_Controller {
 	{
 		$login = $this->input->get('login');
 		
-		$setup_result = $this->Xbets_model->setup();
+		// $setup_result = $this->Xbets_model->setup();
+		$setup_result["status"] = "OK";
+		
 
 		if($setup_result["status"] != "OK"){
 			messageMove($setup_result["status"], "http://#");
