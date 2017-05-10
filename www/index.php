@@ -204,5 +204,7 @@ if (defined('ENVIRONMENT'))
  */
 require_once BASEPATH.'core/CodeIgniter.php';
 
+require_once('appcode/includes/xsp.il8.php');
+
 /* End of file index.php */
 /* Location: ./index.php */

@@ -68,7 +68,6 @@ function game_start(getGameID,slot) {
 
 }
 
-
 function showLayer(url,dataString){
 
 
@@ -92,6 +91,34 @@ function showLayer(url,dataString){
 			$("#ajaxLayer").html(msg);
 			$("#ajaxLayer").modal("show");
 
+		},
+		error: function(msg){
+			alert("error");
+		}
+	});
+
+}
+
+
+function showLayer(url,dataString,display_item_id){
+
+
+	var goUrl = url;
+	var dataString = dataString;
+
+	$.ajax({
+		type: 'GET',
+		url: goUrl,
+		async  : false,
+		dataType: 'html',                   //데이터 유형
+		data: dataString,
+		beforeSend: function(){
+
+			$('#centerLoading').show();
+
+		},
+		success: function(msg){
+			$("#"+display_item_id).html(msg);			
 		},
 		error: function(msg){
 			alert("error");

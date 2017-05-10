@@ -89,39 +89,45 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
 
  <script type="text/javascript" src="<?=ASSET_PATH?>/js/plugin/jquery.modal/jquery.simplemodal.js"></script>
 
+
+<script src="<?=ASSET_PATH?>/js/initPages.js"></script>
+
  
 <script>
 
+function initControls(){
+    Metronic.init(); // init metronic core componets
+    Layout.init(); // init layout
+    QuickSidebar.init(); // init quick sidebar
+    Demo.init(); // init demo features
+    Index.init();
+    Index.initDashboardDaterange();
+    //Index.initJQVMAP(); // init index page's custom scripts
+    //Index.initCalendar(); // init index page's custom scripts
+    //Index.initCharts(); // init index page's custom scripts
+    //Index.initChat();
+    //Index.initMiniCharts();
+    Tasks.initDashboardWidget();
+
+    $("#draggable_ajax").draggable({
+        handle: ".modal-header"
+    });
+
+    $("#draggable").draggable({
+        handle: ".modal-header"
+    });
+    $("#draggable_write2").draggable({
+        handle: ".modal-header"
+    });
+    $("#draggable_view").draggable({
+        handle: ".modal-header"
+    });
+
+    ComponentsPickers.init();
+}
+
     jQuery(document).ready(function () {
-        Metronic.init(); // init metronic core componets
-        Layout.init(); // init layout
-        QuickSidebar.init(); // init quick sidebar
-        Demo.init(); // init demo features
-        Index.init();
-        Index.initDashboardDaterange();
-        //Index.initJQVMAP(); // init index page's custom scripts
-        //Index.initCalendar(); // init index page's custom scripts
-        //Index.initCharts(); // init index page's custom scripts
-        //Index.initChat();
-        //Index.initMiniCharts();
-        Tasks.initDashboardWidget();
-
-        $("#draggable_ajax").draggable({
-            handle: ".modal-header"
-        });
-
-        $("#draggable").draggable({
-            handle: ".modal-header"
-        });
-        $("#draggable_write2").draggable({
-            handle: ".modal-header"
-        });
-        $("#draggable_view").draggable({
-            handle: ".modal-header"
-        });
-
-        ComponentsPickers.init();
-
+        initControls();        
     });
 </script>
 
@@ -129,7 +135,6 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
 <script language="JavaScript">
 
     jQuery(document).ready(function() {
-        UITree.init();
         $("#mainSplitter").jqxSplitter({
             width: '100%',
             height: '900px',
@@ -142,7 +147,7 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
         });
         var leftWidth = 100;
         var rightWidth = $(window).width() - leftWidth;
-        $("#leftPanel").css("width", leftWidth + "px");
+        // $("#leftPanel").css("width", leftWidth + "px");
         $("#rightPanel").css("width", rightWidth + "px");
 
         var screenHeight = 170;
@@ -162,17 +167,44 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
 
 </html>
 
-        
+  
+<script>
+
+function search_prg() {
+    // $("#searchForm").submit();
+    showLayer('/member/getAgentDataList','','rightPanel');
+    // UITree.init();
+};
+
+$(document).ready(function(){
+    initAgentPage();
+});
+     
+$(document).keypress(function(e){
+    if(e.which == 13 ){
+        valueCheck();
+    }
+});
+
+</script>
+
         
 <?php
+    if (!isset($showLogin)) {
+        $showLogin = "no";
+    }
+
 	if ( $showLogin == "yes" )
 	{
 ?>
-	<script>
+
+<script>
 	$(document).ready(function(){
 		showLayer('/member/loginLayer','');
+
 	});
-	</script>
+</script>
+
 <?		
 	}
 ?>

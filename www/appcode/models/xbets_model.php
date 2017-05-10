@@ -23,6 +23,73 @@ class Xbets_model extends CI_Model
 		return $result;
     }
 
+    function loginProc()
+	{
+
+		$customerID		= secure($this->input->post('customerID'));
+		$password		= secure($this->input->post('userpw'));
+
+		$method = "loginVerify";
+
+		// $param = array(
+		// 	'domain' => get_HostName(base_url()),
+		// 	'isMobile' => isMobile()?"Y":"N", //$isMobile,
+		// 	"login"=>$customerID,
+		// 	"password"=>$password,
+  //           "ipaddress"=>getIPaddress()
+		// );
+
+		$param = array(
+			"userName"=>$customerID,
+			"userPassword"=>$password
+		);
+
+
+
+		$result = sendSoapData_new($method, $param);
+
+		return $result;
+	}
+
+	 function getAgentTree()
+	{
+		$method = "agentHIERARCHY";
+		$param = array(
+			"agentId"=>$this->session->userdata('agentID')
+		);
+
+		$result = sendSoapData_new($method, $param);
+
+		return $result;
+	}
+
+	function getAgentList()
+	{
+
+		// $agentPercent		= secure($this->input->post('agentPercent'));
+		// $status				= secure($this->input->post('agstatus'));
+
+		$agentPercent		= 'none';
+		$status				= 'none';
+
+		$agentName			= secure($this->input->post('agentName'));
+		
+		$method = "agentAdminInfo";
+
+		$param = array(
+			"agentId"=>$this->session->userdata('agentID'),
+			"agentPercent"=>$agentPercent,
+			"status"=>$status,
+			"agentName"=>$agentName,
+			"language"=>$this->session->userdata('language')
+		);
+
+		$result = sendSoapData_new($method, $param);
+
+		return $result;
+	}
+
+	/*
 	function withdrawTopList($topLimit,$selectType)
 	{
 		$method = "WithdrawTopList";
@@ -86,33 +153,6 @@ class Xbets_model extends CI_Model
 		return $result;
 
 	}
-
-	function loginProc()
-	{
-
-		$customerID		= secure($this->input->post('customerID'));
-		$password		= secure($this->input->post('userpw'));
-
-		$method = "loginVerify";
-
-		// $param = array(
-		// 	'domain' => get_HostName(base_url()),
-		// 	'isMobile' => isMobile()?"Y":"N", //$isMobile,
-		// 	"login"=>$customerID,
-		// 	"password"=>$password,
-  //           "ipaddress"=>getIPaddress()
-		// );
-
-		$param = array(
-			"userName"=>$customerID,
-			"userPassword"=>$password
-		);
-
-		$result = sendSoapData_new($method, $param);
-
-		return $result;
-	}
-
 
 	function marksAsRead(){
 
@@ -1135,5 +1175,7 @@ class Xbets_model extends CI_Model
             return $result;
 	}
         //----------------------------------------------------------------------
+
+	*/
 }
 ?>

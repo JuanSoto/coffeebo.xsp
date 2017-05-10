@@ -6,6 +6,10 @@ $qtech = array("122.53.186.98","222.127.94.12");
 $dev_whitelisted = in_array($current_ip,$whitelist);
 $qtech_whitelisted = in_array($current_ip,$qtech);
 $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
+$language = 'en';
+
+require_once('././appcode/includes/xsp.il8.php');
+
 ?>
 
 
@@ -43,6 +47,7 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
     <link rel="shortcut icon" href="favicon.ico"/>
 
     <script src="<?=ASSET_PATH?>/js/page.js"></script>
+
    
 </head>
 
@@ -54,7 +59,7 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="index.html">
+                <a href="/">
                     <img src="<?=ASSET_PATH?>/img/logo.png" alt="logo" class="logo-default"/> </a>
             </div>
             <!-- END LOGO -->
@@ -64,355 +69,245 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
             <div class="hor-menu   hidden-sm hidden-xs">
                 <ul class="nav navbar-nav">
                     <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
-                    <li class="classic-menu-dropdown active" aria-haspopup="true">
-                        <a href="index.html"> Active
-                            <span class="selected"> </span>
-                        </a>
-                    </li>
                     <li class="mega-menu-dropdown" aria-haspopup="true">
                         <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                           data-close-others="true"> Mega
+                           data-close-others="true"> <?= il8("system",$language) ?>
                             <i class="fa fa-angle-down"></i>
                         </a>
-                        <ul class="dropdown-menu" style="min-width: 700px;">
+                        <ul class="dropdown-menu" style="min-width: 500px;">
                             <li>
                                 <!-- Content container to add padding -->
                                 <div class="mega-menu-content">
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <ul class="mega-menu-submenu">
-                                                <li>
-                                                    <h3>Section 1</h3>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <ul class="mega-menu-submenu">
-                                                <li>
-                                                    <h3>Section 2</h3>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <ul class="mega-menu-submenu">
-                                                <li>
-                                                    <h3>Section 3</h3>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Example Link</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <?php if (!$this->session->userdata('IsSuperAgent')) { ?>
+                                            <li><a href="#"><?= il8("system site",$language)?></a></li>
+                                        <?php }else{  ?>
+                                            <div class="col-md-5">
+                                                <ul class="mega-menu-submenu">                   
+                                                    <li><a href="#"><?= il8("brand manager",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("rating manager",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("system site",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("bank code mng",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("bank account manager",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("game company manager",$language)?></a></li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-md-5">
+                                                <ul class="mega-menu-submenu">                   
+                                                    <?php if($this->session->userdata('currency')=="CNY"){ ?>
+                                                        <li><a href="#"><?= il8("levels",$language)?></a></li>
+                                                        <li><a href="#"><?= il8("levels setting",$language)?></a></li>
+                                                    <?php } ?>
+                                                    <li><a href="#"><?= il8("withdraw wait manager",$language)?></a></li>
+                                                    <li><a href="#" class="top_link"><?= il8("promotions first",$language)?></a></li>
+                                                    <li><a href="#" class="top_link"><?= il8("promotions week",$language)?></a></li>
+                                                    <li><a href="#" class="top_link"><?= il8("alert msg",$language)?></a></li>
+                                                    <li><a href="#" class="top_link"><?= il8("sms auth log",$language)?></a></li>
+                                                </ul>
+                                            </div>
+
+                                        <?php }  ?>                       
+                
+                                        
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </li>
-                    <li class="mega-menu-dropdown mega-menu-full" aria-haspopup="true" data-hover="megamenu-dropdown"
-                        data-close-others="true">
-                        <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                           data-close-others="true"> Full Mega
+                    
+                    <li class="mega-menu-dropdown" aria-haspopup="true">
+                        <?php if ( $this->session->userdata('IsSuperAgent') ) { 
+                            $url_customer = "/customers.php";
+                        }else{
+                            $url_customer = "/agt_customers.php";
+                        }
+                        ?>
+                        <a href="<?= $url_customer ?>" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                           data-close-others="true"> <?= il8("customers",$language) ?>
                             <i class="fa fa-angle-down"></i>
                         </a>
-                        <ul class="dropdown-menu">
+
+                        <ul class="dropdown-menu" style="min-width: 500px;">
                             <li>
                                 <!-- Content container to add padding -->
-                                <div class="mega-menu-content ">
+                                <div class="mega-menu-content">
                                     <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <ul class="mega-menu-submenu">
-                                                        <li>
-                                                            <h3>Section 1</h3>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <ul class="mega-menu-submenu">
-                                                        <li>
-                                                            <h3>Section 1</h3>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <ul class="mega-menu-submenu">
-                                                        <li>
-                                                            <h3>Section 1</h3>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <ul class="mega-menu-submenu">
-                                                        <li>
-                                                            <h3>Section 4</h3>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Example Link</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div id="accordion" class="panel-group">
-                                                <div class="panel panel-success">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion"
-                                                               href="#collapseOne" class="collapsed"> Mega Menu Info
-                                                                #1 </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseOne" class="panel-collapse in">
-                                                        <div class="panel-body"> Metronic Mega Menu Works for fixed and
-                                                            responsive layout and has the facility to include (almost)
-                                                            any Bootstrap elements.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel panel-danger">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion"
-                                                               href="#collapseTwo" class="collapsed"> Mega Menu Info
-                                                                #2 </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                                        <div class="panel-body"> Metronic Mega Menu Works for fixed and
-                                                            responsive layout and has the facility to include (almost)
-                                                            any Bootstrap elements.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion"
-                                                               href="#collapseThree"> Mega Menu Info #3 </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapseThree" class="panel-collapse collapse">
-                                                        <div class="panel-body"> Metronic Mega Menu Works for fixed and
-                                                            responsive layout and has the facility to include (almost)
-                                                            any Bootstrap elements.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <ul class="mega-menu-submenu">
+                                                 <?php if ($this->session->userdata('IsSuperAgent')) { ?>
+                                                    <li><a href="#"><?= il8("customers",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("coupon manager",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("friend referal",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("black customer",$language)?><?= il8("management",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("customer change",$language)?></a></li>
+                                                <?php }else{  ?>
+                                                    <li><a href="#"><?= il8("customers",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("coupon manager",$language)?></a></li>
+                                                <?php }  ?>
+                                                <?php if ($this->session->userdata('agentLevel') == "0") { ?>
+                                                    <li><a href="#"><?= il8("login ip check",$language)?></a></li>
+                                                <?php }  ?>
+                                            </ul>   
                                         </div>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </li>
-                    <li class="classic-menu-dropdown" aria-haspopup="true">
-                        <a href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true"> Classic
+                    
+                    <?php if ($this->session->userdata('IsSuperAgent')) { ?>
+                        <li class="mega-menu-dropdown" aria-haspopup="true">
+                            <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                               data-close-others="true"> <?= il8("crm",$language) ?>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 500px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <ul class="mega-menu-submenu">
+                                                    <li><a href="#"><?= il8("crm manager",$language)?></a></li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="mega-menu-dropdown" aria-haspopup="true">
+                            <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                               data-close-others="true"> <?= il8("agents",$language) ?>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 500px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <ul class="mega-menu-submenu">
+                                                    <li><a href="/member/getAgentData"><?= il8("agents",$language)?></a></li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php }  ?>
+
+                    <li class="mega-menu-dropdown" aria-haspopup="true">
+                        <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                           data-close-others="true"> <?= il8("commisions",$language) ?>
                             <i class="fa fa-angle-down"></i>
                         </a>
-                        <ul class="dropdown-menu pull-left">
+                        <ul class="dropdown-menu" style="min-width: 500px;">
                             <li>
-                                <a href="javascript:;">
-                                    <i class="fa fa-bookmark-o"></i> Section 1 </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class="fa fa-user"></i> Section 2 </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class="fa fa-puzzle-piece"></i> Section 3 </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class="fa fa-gift"></i> Section 4 </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class="fa fa-table"></i> Section 5 </a>
-                            </li>
-                            <li class="dropdown-submenu" aria-haspopup="true">
-                                <a href="javascript:;">
-                                    <i class="fa fa-envelope-o"></i> More options </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="javascript:;"> Second level link </a>
-                                    </li>
-                                    <li class="dropdown-submenu" aria-haspopup="true">
-                                        <a href="javascript:;"> More options </a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="index.html"> Third level link </a>
-                                            </li>
-                                            <li>
-                                                <a href="index.html"> Third level link </a>
-                                            </li>
-                                            <li>
-                                                <a href="index.html"> Third level link </a>
-                                            </li>
-                                            <li>
-                                                <a href="index.html"> Third level link </a>
-                                            </li>
-                                            <li>
-                                                <a href="index.html"> Third level link </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="index.html"> Second level link </a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html"> Second level link </a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html"> Second level link </a>
-                                    </li>
-                                </ul>
+                                <!-- Content container to add padding -->
+                                <div class="mega-menu-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <ul class="mega-menu-submenu">
+                                                <li><a href="#"><?= il8("commisions",$language)?></a></li>
+                                                <li><a href="#"><?= il8("commision status",$language)?></a></li>
+                                                    
+                                                 <?php if ($this->session->userdata('IsSuperAgent')) { ?>
+                                                    <li><a href="#"><?= il8("transaction approval",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("transaction request",$language)?></a></li>
+                                                <?php }else{  ?>
+                                                    <li><a href="#"><?= il8("transaction request",$language)?></a></li>
+                                                <?php }  ?>
+                                                <?php if ($this->session->userdata('agentLevel') == "0") { ?>
+                                                    <li><a href="#"><?= il8("headoffice calculate history",$language)?></a></li>
+                                                <?php }  ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </li>
+
+                    <li class="mega-menu-dropdown" aria-haspopup="true">
+                        <?php if ( $this->session->userdata('IsSuperAgent') ) { 
+                            $url_transaction = "/dw_validation.php";
+                        }else{
+                            $url_transaction = "/dw_history.php";
+                        }
+                        ?>
+                        <a href="<?= $url_transaction ?>" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                           data-close-others="true"> <?= il8("transactions",$language) ?>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu" style="min-width: 500px;">
+                            <li>
+                                <!-- Content container to add padding -->
+                                <div class="mega-menu-content">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <ul class="mega-menu-submenu">
+                                                <?php if ($this->session->userdata('IsSuperAgent')) { ?>
+                                                    <li><a href="#"><?= il8("dwvalidation",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("dwgroup",$language)?></a></li>
+                                                <?php }  ?>
+                                                <li><a href="#"><?= il8("dwhistory",$language)?></a></li>
+                                            </ul>   
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <?php if ($this->session->userdata('IsSuperAgent')) { ?>
+                        <li class="mega-menu-dropdown" aria-haspopup="true">
+                            <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                               data-close-others="true"> <?= il8("statistics",$language) ?>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 500px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <ul class="mega-menu-submenu">
+                                                    <li><a href="#"><?= il8("statistics",$language)?></a></li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="mega-menu-dropdown" aria-haspopup="true">
+                            <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                               data-close-others="true"> <?= il8("board manager",$language) ?>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 500px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <ul class="mega-menu-submenu">
+                                                    <li><a href="#"><?= il8("web board",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("message agent",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("message customers",$language)?></a></li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php }  ?>                    
                 </ul>
             </div>
             <!-- END MEGA MENU -->

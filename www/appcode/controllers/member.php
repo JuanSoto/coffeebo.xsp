@@ -9,6 +9,44 @@ class Member extends CI_Controller {
 
 	}
 
+
+	public function getAgentData()
+	{
+		if(!isLogin()) {
+			moveReplace("/member/clogin");
+		}
+
+		$this->load->view('/include/top');
+		$this->load->view('agentMain');
+		$this->load->view('/include/footer');		
+	}
+
+	public function getAgentDataTree()
+	{
+		if(!isLogin()) {
+			moveReplace("/member/clogin");
+		}
+
+		$result = $this->Xbets_model->getAgentTree();
+		// error_log(json_encode($result),3,"C:/temp/ErrorMessage.log"); 
+		// $result = json_decode($result_json["agentHIERARCHYResult"]);
+		$this->load->view('agentTree', $result);		
+	}
+
+
+	public function getAgentDataList()
+	{
+		if(!isLogin()) {
+			moveReplace("/member/clogin");
+		}
+
+		$result = $this->Xbets_model->getAgentList();
+		error_log(json_encode($result),3,"C:/temp/ErrorMessage.log"); 
+		$this->load->view('agentList',$result);
+	}
+
+
+
 	 public function messages()
  {
   		checkLogin();
@@ -127,11 +165,18 @@ class Member extends CI_Controller {
 
 				$this->session->set_userdata('MEM_LID', $customerID); //세션
 				$this->session->set_userdata('customerID', $login_result->{'userName'}); //세션
-				$this->session->set_userdata('loginSessionID', $login_result->{'token'}); //세션
-				// o$this->session->set_userdata('frdFlag', $login_result["frdFlag"]); //세션
-				// $this->session->set_userdata('levelName', $login_result["levelName"]); //세션
-				// $this->session->set_userdata('GameCmpanyVisible', $login_result["GameCompanyVisible"]); //세션
+				$this->session->set_userdata('agentID', $login_result->{'agentID'}); //세션
 
+				$this->session->set_userdata('name', $login_result->{'name'}); //세션
+				$this->session->set_userdata('active', $login_result->{'active'}); //세션
+				$this->session->set_userdata('currentBalance', $login_result->{'currentBalance'}); //세션
+				$this->session->set_userdata('agentLevel', $login_result->{'agentLevel'}); //세션
+				$this->session->set_userdata('IsMasterAgent', ($login_result->{'IsMasterAgent'} === '1')); 
+				$this->session->set_userdata('IsSuperAgent', ($login_result->{'IsSuperAgent'} === '1')); 
+
+				$this->session->set_userdata('language', $login_result->{'language'}); 
+				$this->session->set_userdata('loginSessionID', $login_result->{'token'}); 
+				
 				if($ret_url == ""){
 					$ret_url = "/";
 				}
