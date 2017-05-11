@@ -6,24 +6,31 @@
 <!------------------------------- Tree ---------------------------------------------->
 <div id="tree_1" class="tree-demo">
     <ul>
-        <li> Root node 1 <?= $data->{'status'}  ?>
-            <ul>
-                <li data-jstree='{ "selected" : true }'>
-                    <a href="javascript:;"> Initially selected </a>
-                </li>
-                <li data-jstree='{ "icon" : "fa fa-briefcase icon-state-success " }'> custom icon URL </li>
-                <li data-jstree='{ "opened" : true }'> initially open
-                    <ul>
-                        <li data-jstree='{ "disabled" : true }'> Disabled Node </li>
-                        <li data-jstree='{ "type" : "file" }'> Another node </li>
-                    </ul>
-                </li>
-                <li data-jstree='{ "icon" : "fa fa-warning icon-state-danger" }'> Custom icon class (bootstrap) </li>
+        <?php 
+            $State = "true";
+            foreach ($data->{'data'} as $agent) 
+            {
+                error_log(json_encode($agent),3,"C:/temp/ErrorMessage.log"); 
+                if ($agent->{'Level'} == '0') 
+                {                                
+        ?>
+                    <li onclick="treeClick(<?= $agent->{'AgentID'} ?>)" data-jstree='{ "icon" : "fa fa-users icon-state-success " }'> <?= $agent->{'loginName'} ?>
+                        <ul>
+        <?php   } 
+                else  
+                {                    
+        ?>
+                                 <li onclick="treeClick(<?= $agent->{'AgentID'} ?>)" data-jstree='{ "selected" : <?= $State?>, "icon" : "fa fa-user-o icon-state-success" }'>
+                                                <?= $agent->{'loginName'} ?>
+                                </li>                                            
+
+        <?php   
+                    $State = "false";
+                }
+            }
+        ?>          
             </ul>
-        </li>
-        <li data-jstree='{ "type" : "file" }'>
-            <a href="http://www.jstree.com"> Clickanle link node </a>
-        </li>
+        </li>            
     </ul>
 </div>
 

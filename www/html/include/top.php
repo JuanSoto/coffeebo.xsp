@@ -71,7 +71,7 @@ require_once('././appcode/includes/xsp.il8.php');
                     <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
                     <li class="mega-menu-dropdown" aria-haspopup="true">
                         <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                           data-close-others="true"> <?= il8("system",$language) ?>
+                           data-close-others="true"> <?= il8("Member Management",$language) ?>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu" style="min-width: 500px;">
@@ -79,37 +79,17 @@ require_once('././appcode/includes/xsp.il8.php');
                                 <!-- Content container to add padding -->
                                 <div class="mega-menu-content">
                                     <div class="row">
-                                        <?php if (!$this->session->userdata('IsSuperAgent')) { ?>
-                                            <li><a href="#"><?= il8("system site",$language)?></a></li>
-                                        <?php }else{  ?>
-                                            <div class="col-md-5">
+                                        <?php if ($this->session->userdata('IsSuperAgent') || $this->session->userdata('IsMasterAgent')) { 
+                                            $url_customer = "/customers.php";
+                                        }else{
+                                            $url_customer = "/agt_customers.php";
+                                        }
+                                        ?>   
+                                        <div class="col-md-5">
                                                 <ul class="mega-menu-submenu">                   
-                                                    <li><a href="#"><?= il8("brand manager",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("rating manager",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("system site",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("bank code mng",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("bank account manager",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("game company manager",$language)?></a></li>
+                                                    <li><a href="<?= $url_customer ?>"><?= il8("Member Management",$language)?></a></li>                                                    
                                                 </ul>
-                                            </div>
-
-                                            <div class="col-md-5">
-                                                <ul class="mega-menu-submenu">                   
-                                                    <?php if($this->session->userdata('currency')=="CNY"){ ?>
-                                                        <li><a href="#"><?= il8("levels",$language)?></a></li>
-                                                        <li><a href="#"><?= il8("levels setting",$language)?></a></li>
-                                                    <?php } ?>
-                                                    <li><a href="#"><?= il8("withdraw wait manager",$language)?></a></li>
-                                                    <li><a href="#" class="top_link"><?= il8("promotions first",$language)?></a></li>
-                                                    <li><a href="#" class="top_link"><?= il8("promotions week",$language)?></a></li>
-                                                    <li><a href="#" class="top_link"><?= il8("alert msg",$language)?></a></li>
-                                                    <li><a href="#" class="top_link"><?= il8("sms auth log",$language)?></a></li>
-                                                </ul>
-                                            </div>
-
-                                        <?php }  ?>                       
-                
-                                        
+                                            </div>      
                                     </div>
                                 </div>
                             </li>
@@ -117,14 +97,8 @@ require_once('././appcode/includes/xsp.il8.php');
                     </li>
                     
                     <li class="mega-menu-dropdown" aria-haspopup="true">
-                        <?php if ( $this->session->userdata('IsSuperAgent') ) { 
-                            $url_customer = "/customers.php";
-                        }else{
-                            $url_customer = "/agt_customers.php";
-                        }
-                        ?>
-                        <a href="<?= $url_customer ?>" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                           data-close-others="true"> <?= il8("customers",$language) ?>
+                        <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                           data-close-others="true"> <?= il8("Sorting",$language) ?>
                             <i class="fa fa-angle-down"></i>
                         </a>
 
@@ -135,19 +109,7 @@ require_once('././appcode/includes/xsp.il8.php');
                                     <div class="row">
                                         <div class="col-md-5">
                                             <ul class="mega-menu-submenu">
-                                                 <?php if ($this->session->userdata('IsSuperAgent')) { ?>
-                                                    <li><a href="#"><?= il8("customers",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("coupon manager",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("friend referal",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("black customer",$language)?><?= il8("management",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("customer change",$language)?></a></li>
-                                                <?php }else{  ?>
-                                                    <li><a href="#"><?= il8("customers",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("coupon manager",$language)?></a></li>
-                                                <?php }  ?>
-                                                <?php if ($this->session->userdata('agentLevel') == "0") { ?>
-                                                    <li><a href="#"><?= il8("login ip check",$language)?></a></li>
-                                                <?php }  ?>
+                                                 <li><a href="#"><?= il8("Sorting",$language)?></a></li>
                                             </ul>   
                                         </div>
                                     </div>
@@ -155,29 +117,34 @@ require_once('././appcode/includes/xsp.il8.php');
                             </li>
                         </ul>
                     </li>
-                    
-                    <?php if ($this->session->userdata('IsSuperAgent')) { ?>
-                        <li class="mega-menu-dropdown" aria-haspopup="true">
-                            <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                               data-close-others="true"> <?= il8("crm",$language) ?>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" style="min-width: 500px;">
-                                <li>
-                                    <!-- Content container to add padding -->
-                                    <div class="mega-menu-content">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <ul class="mega-menu-submenu">
-                                                    <li><a href="#"><?= il8("crm manager",$language)?></a></li>
-                                                </ul>   
-                                            </div>
+
+                    <?php if ($this->session->userdata('IsSuperAgent') || $this->session->userdata('IsMasterAgent')) { ?>
+                    <li class="mega-menu-dropdown" aria-haspopup="true">
+                        <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                           data-close-others="true"> <?= il8("Calculation Management",$language) ?>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" style="min-width: 500px;">
+                            <li>
+                                <!-- Content container to add padding -->
+                                <div class="mega-menu-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <ul class="mega-menu-submenu">
+                                                 <li><a href="#"><?= il8("Calculation Management",$language)?></a></li>
+                                            </ul>   
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
-                        </li>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php }  ?>
 
+
+                    
+                    <?php if ($this->session->userdata('IsSuperAgent') || $this->session->userdata('IsMasterAgent')) { ?>
                         <li class="mega-menu-dropdown" aria-haspopup="true">
                             <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
                                data-close-others="true"> <?= il8("agents",$language) ?>
@@ -198,11 +165,57 @@ require_once('././appcode/includes/xsp.il8.php');
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="mega-menu-dropdown" aria-haspopup="true">
+                            <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                               data-close-others="true"> <?= il8("bet limits",$language) ?>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 500px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <ul class="mega-menu-submenu">
+                                                    <li><a href="#"><?= il8("General Limits",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("By bookmaker limits",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("By sport limits",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("By league limits",$language)?></a></li>
+                                                    <li><a href="#"><?= il8("By agent limits",$language)?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="mega-menu-dropdown" aria-haspopup="true">
+                            <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown"
+                               data-close-others="true"> <?= il8("bet history",$language) ?>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 500px;">
+                                <li>
+                                    <!-- Content container to add padding -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <ul class="mega-menu-submenu">
+                                                    <li><a href="#"><?= il8("bet history",$language)?></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
                     <?php }  ?>
 
                     <li class="mega-menu-dropdown" aria-haspopup="true">
                         <a href="javascript:;" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                           data-close-others="true"> <?= il8("commisions",$language) ?>
+                           data-close-others="true"> <?= il8("money log",$language) ?>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu" style="min-width: 500px;">
@@ -212,18 +225,7 @@ require_once('././appcode/includes/xsp.il8.php');
                                     <div class="row">
                                         <div class="col-md-6">
                                             <ul class="mega-menu-submenu">
-                                                <li><a href="#"><?= il8("commisions",$language)?></a></li>
-                                                <li><a href="#"><?= il8("commision status",$language)?></a></li>
-                                                    
-                                                 <?php if ($this->session->userdata('IsSuperAgent')) { ?>
-                                                    <li><a href="#"><?= il8("transaction approval",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("transaction request",$language)?></a></li>
-                                                <?php }else{  ?>
-                                                    <li><a href="#"><?= il8("transaction request",$language)?></a></li>
-                                                <?php }  ?>
-                                                <?php if ($this->session->userdata('agentLevel') == "0") { ?>
-                                                    <li><a href="#"><?= il8("headoffice calculate history",$language)?></a></li>
-                                                <?php }  ?>
+                                                <li><a href="#"><?= il8("money log",$language)?></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -231,83 +233,7 @@ require_once('././appcode/includes/xsp.il8.php');
                             </li>
                         </ul>
                     </li>
-
-                    <li class="mega-menu-dropdown" aria-haspopup="true">
-                        <?php if ( $this->session->userdata('IsSuperAgent') ) { 
-                            $url_transaction = "/dw_validation.php";
-                        }else{
-                            $url_transaction = "/dw_history.php";
-                        }
-                        ?>
-                        <a href="<?= $url_transaction ?>" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                           data-close-others="true"> <?= il8("transactions",$language) ?>
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu" style="min-width: 500px;">
-                            <li>
-                                <!-- Content container to add padding -->
-                                <div class="mega-menu-content">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <ul class="mega-menu-submenu">
-                                                <?php if ($this->session->userdata('IsSuperAgent')) { ?>
-                                                    <li><a href="#"><?= il8("dwvalidation",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("dwgroup",$language)?></a></li>
-                                                <?php }  ?>
-                                                <li><a href="#"><?= il8("dwhistory",$language)?></a></li>
-                                            </ul>   
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <?php if ($this->session->userdata('IsSuperAgent')) { ?>
-                        <li class="mega-menu-dropdown" aria-haspopup="true">
-                            <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                               data-close-others="true"> <?= il8("statistics",$language) ?>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" style="min-width: 500px;">
-                                <li>
-                                    <!-- Content container to add padding -->
-                                    <div class="mega-menu-content">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <ul class="mega-menu-submenu">
-                                                    <li><a href="#"><?= il8("statistics",$language)?></a></li>
-                                                </ul>   
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="mega-menu-dropdown" aria-haspopup="true">
-                            <a href="#" class="dropdown-toggle" data-hover="megamenu-dropdown"
-                               data-close-others="true"> <?= il8("board manager",$language) ?>
-                                <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" style="min-width: 500px;">
-                                <li>
-                                    <!-- Content container to add padding -->
-                                    <div class="mega-menu-content">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <ul class="mega-menu-submenu">
-                                                    <li><a href="#"><?= il8("web board",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("message agent",$language)?></a></li>
-                                                    <li><a href="#"><?= il8("message customers",$language)?></a></li>
-                                                </ul>   
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    <?php }  ?>                    
+                                        
                 </ul>
             </div>
             <!-- END MEGA MENU -->

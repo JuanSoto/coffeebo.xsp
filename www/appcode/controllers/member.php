@@ -41,7 +41,7 @@ class Member extends CI_Controller {
 		}
 
 		$result = $this->Xbets_model->getAgentList();
-		error_log(json_encode($result),3,"C:/temp/ErrorMessage.log"); 
+		// error_log(json_encode($result),3,"C:/temp/ErrorMessage.log"); 
 		$this->load->view('agentList',$result);
 	}
 

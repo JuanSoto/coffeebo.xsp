@@ -170,6 +170,12 @@ function initControls(){
   
 <script>
 
+function treeClick(id) {
+    // $("#searchForm").submit();
+    // showLayer('/member/getAgentDataList','','rightPanel');
+    // UITree.init();
+};
+
 function search_prg() {
     // $("#searchForm").submit();
     showLayer('/member/getAgentDataList','','rightPanel');
