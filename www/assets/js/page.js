@@ -104,17 +104,17 @@ function showLayer(url,dataString,display_item_id){
 
 
 	var goUrl = url;
-	var dataString = dataString;
+	// var dataString = dataString;
 
 	$.ajax({
-		type: 'GET',
+		type: 'POST',
 		url: goUrl,
 		async  : false,
 		dataType: 'html',                   //데이터 유형
 		data: dataString,
 		beforeSend: function(){
 
-			$('#centerLoading').show();
+			// $('#centerLoading').show();
 
 		},
 		success: function(msg){

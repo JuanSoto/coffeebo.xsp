@@ -92,6 +92,8 @@ $GameCompanyVisible = $this->session->userdata('GameCompanyVisible');
 
 <script src="<?=ASSET_PATH?>/js/initPages.js"></script>
 
+<script src="<?=ASSET_PATH?>/js/controllers/agent.js"></script>
+
  
 <script>
 

@@ -1,4 +1,6 @@
 
+    <input name="agent_id" id="agent_id" type=hidden value="">
+
     <!-- BEGIN HEADER & CONTENT DIVIDER -->
     <div class="clearfix"></div>
     <!-- END HEADER & CONTENT DIVIDER -->
@@ -57,7 +59,7 @@
                             <input class="form-control" type="text" name="agentName" id="agentName" placeholder="<?=il8("agent id",$this->session->userdata('language') ) ?>"/>
                         </div>
                         
-                        <button onClick="search_prg(); return false;" type="button" class="btn btn-success"><?=il8("search",$this->session->userdata('language') ) ?></button>
+                        <button onClick="agent.search(); return false;" type="button" class="btn btn-success"><?=il8("search",$this->session->userdata('language') ) ?></button>
                     </form>
 
                 </div>

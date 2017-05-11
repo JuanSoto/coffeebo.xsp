@@ -66,18 +66,20 @@ class Xbets_model extends CI_Model
 	function getAgentList()
 	{
 
-		// $agentPercent		= secure($this->input->post('agentPercent'));
-		// $status				= secure($this->input->post('agstatus'));
-
-		$agentPercent		= 'none';
-		$status				= 'none';
-
+		$agentPercent		= secure($this->input->post('agentPercent'));
+		$status				= secure($this->input->post('status'));
 		$agentName			= secure($this->input->post('agentName'));
+		$agentId			= secure($this->input->post('agentId'));
+
+		if (is_null($agentId) || empty($agentId)){
+			$agentId = $this->session->userdata('agentID');
+		}
 		
 		$method = "agentAdminInfo";
 
 		$param = array(
-			"agentId"=>$this->session->userdata('agentID'),
+			// "agentId"=>$this->session->userdata('agentID'),
+			"agentId"=>$agentId,
 			"agentPercent"=>$agentPercent,
 			"status"=>$status,
 			"agentName"=>$agentName,
