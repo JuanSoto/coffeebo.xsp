@@ -1,5 +1,7 @@
 <?php 
     $data = json_decode($agentAdminInfoResult);
+    if ($data->{'status'} == 'OK')
+    {
  ?>
 
 <table class="table table-striped table-bordered table-hover table-checkable order-column"
@@ -40,7 +42,7 @@
                                             <span></span>
                                         </label>
                                     </td>
-                                    <td><a class="btn green btn-outline sbold" data-toggle="modal" href="#draggable">
+                                    <td><a onclick="agent.modal(event,<?= $agent->{'AgentID'} ?>);" class="btn green btn-outline sbold" data-toggle="modal" href="">
                                         <?= $agent->{'loginName'} ?> </a></td>
                                     <td> <?= $agent->{'loginName'} ?></td>
                                     <td> <?= $agent->{'level'} ?></td>
@@ -59,3 +61,9 @@
                                 </tbody>
                             </table>
                             <!-- END EXAMPLE TABLE PORTLET-->
+
+<?php }
+    else { 
+?>
+    <h3>No agents found... </h3>
+<?php } ?>

@@ -1,3 +1,12 @@
+<?php 
+    require_once('././appcode/includes/xsp.il8.php');
+?>
+<style type="text/css">
+    .modal-dialog {
+    width: 80%;
+    margin: 30px auto;
+}
+</style>
 
     <input name="agent_id" id="agent_id" type=hidden value="">
 
@@ -93,7 +102,7 @@
                                             aria-hidden="true"></button>
                                     <h4 class="modal-title">Start Dragging Here</h4>
                                 </div>
-                                <div class="modal-body"> Modal body goes here</div>
+                                <div id="modal-body" class="modal-body"></div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close
                                     </button>

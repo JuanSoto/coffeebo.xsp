@@ -27,5 +27,19 @@ var agent = {
 		var data = $.extend({}, {agentId:$('#agent_id').val()}, agent.getSearchData());
 		// console.log("data:...", data);
 		showLayer('/member/getAgentDataList',data,'rightPanel');
+	},
+	modal: function(event, id){
+		console.log("event: ", event);
+		console.log("id: ", id);
+		if (!event) {
+        	event = window.event; 
+		};
+
+    	var el = (event.target || event.srcElement); 
+    	var data = {
+    		agentId:id
+    	};
+    	showLayerModal(el,'/member/loadModalView',data,'modal-body');
+		// $(el).attr("href","#draggable");
 	}
 }

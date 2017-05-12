@@ -127,6 +127,32 @@ function showLayer(url,dataString,display_item_id){
 
 }
 
+function showLayerModal(element,url,dataString,display_item_id){
+	console.log(element);
+	var goUrl = url;
+
+	$.ajax({
+		type: 'POST',
+		url: goUrl,
+		async  : false,
+		dataType: 'html',                   //데이터 유형
+		data: dataString,
+		beforeSend: function(){
+			// $('#centerLoading').show();
+		},
+		success: function(msg){
+			$("#"+display_item_id).html(msg);		
+			$(element).attr("href","#draggable");	
+		},
+		error: function(msg){
+			alert("error");
+		}
+	});
+
+}
+
+
+
 	function loginProc() {
 
 		if(!form_field_alert_check("nx_id","Email address","lnx_id","please enter your username")){return;}

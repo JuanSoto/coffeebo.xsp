@@ -91,6 +91,33 @@ class Xbets_model extends CI_Model
 		return $result;
 	}
 
+	function getAgentDetails()
+	{
+		$agentId = secure($this->input->post('agentId'));
+		
+		$method = "agentInfoTab";
+
+		$param = array(
+			"agentId"=>$agentId,
+			"language"=>$this->session->userdata('language')
+		);
+
+		$result = sendSoapData_new($method, $param);
+
+		/*************************/
+
+		$method = "agentSubAgentsTab";
+
+		$param = array(
+			"agentId"=>$agentId
+		);
+
+		$result1 = sendSoapData_new($method, $param);
+
+		return $result + $result1;
+	}
+
+
 	/*
 	function withdrawTopList($topLimit,$selectType)
 	{

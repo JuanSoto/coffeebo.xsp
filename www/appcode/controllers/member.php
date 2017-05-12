@@ -45,6 +45,23 @@ class Member extends CI_Controller {
 		$this->load->view('agentList',$result);
 	}
 
+	public function loadModalView()
+	{
+		if(!isLogin()) {
+			moveReplace("/member/clogin");
+		}
+
+		$result = $this->Xbets_model->getAgentDetails();
+		// error_log(json_encode($result),3,"C:/temp/ErrorMessage.log"); 
+		$this->load->view('agentCrud',$result);
+	}
+
+
+
+
+
+
+
 
 
 	 public function messages()
